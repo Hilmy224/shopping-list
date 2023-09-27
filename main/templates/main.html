@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand">Muhammad Hilmy Abdul Aziz</a>
+      <a href="{% url 'main:logout' %}" class="d-flex" style="text-decoration: none;">
+        <button type="button" class="btn btn-success">
+            Logout
+        </button>
+    </a>
+    </div>
+  </nav>
     <h1>Shopping List Page</h1>
 
     <h5>Name:</h5>
@@ -25,6 +35,18 @@
             <td>{{product.price}}</td>
             <td>{{product.description}}</td>
             <td>{{product.date_added}}</td>
+            <td>
+                <a href="{% url 'main:edit_product' product.pk %}" style="text-decoration: none;">
+                    <button>
+                        Edit
+                    </button>
+                </a>
+                <a href="{% url 'main:delete_product' product.pk %}" style="text-decoration: none;">
+                    <button>
+                        Delete
+                    </button>
+                </a>
+            </td>
         </tr>
     {% endfor %}
 </table>
@@ -34,12 +56,6 @@
 <a href="{% url 'main:create_product' %}">
     <button>
         Add New Product
-    </button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
     </button>
 </a>
 
